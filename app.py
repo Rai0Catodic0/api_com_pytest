@@ -1,8 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import core
 from json import  loads
 app = Flask(__name__)
 
+@app.route('/alo')
+def alo():
+    return render_template('index.html')
 
 
 @app.route('/',methods=['GET','POST'])
@@ -20,7 +23,7 @@ def add_todo():
 def delete_todo():
     id = request.args.get('id',default=1,type=int)
     core.delete(id)
-    return f'task{id} de
+    return f'task{id} deletada'
 
 @app.route('/update',methods=['POST'])
 def update_todo():
